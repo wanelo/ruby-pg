@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "pg"
-  spec.version       = "17.1.0"
+  spec.version       = "0.17.1"
   spec.authors       = ["Michael Granger"]
   spec.email         = ["ged@FaerieMUD.org"]
   spec.description   = %q{}
