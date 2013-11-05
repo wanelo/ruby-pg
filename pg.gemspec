@@ -3,10 +3,10 @@
 Gem::Specification.new do |spec|
   spec.name          = "pg"
   spec.version       = "17.1.0"
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.authors       = ["Michael Granger"]
+  spec.email         = ["ged@FaerieMUD.org"]
+  spec.description   = %q{}
+  spec.summary       = %q{}
   spec.homepage      = ""
   spec.license       = "MIT"
 
