@@ -90,7 +90,8 @@ $defs.push( "-DHAVE_ST_NOTIFY_EXTRA" ) if
 
 if `which dtrace`
   puts 'Compiling with dtrace..'
-  system `dtrace -o ../../../../ext/pg_probes.h -h -s ../../../../ext/pg_probes.d`
+  dir = File.expand_path('../', __FILE__)
+  system `dtrace -o #{dir}/pg_probes.h -h -s #{dir}/pg_probes.d`
   find_header('pg_probes.h') or abort 'Cant find dtrace pg probe header file'
   $defs.push("-DHAVE_PG_DTRACE_PROBES")
 else
