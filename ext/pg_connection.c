@@ -6,6 +6,9 @@
 
 #include "pg.h"
 
+#ifdef HAVE_PG_DTRACE_PROBES
+#include "pg_probes.h"
+#endif
 
 VALUE rb_cPGconn;
 
@@ -186,6 +189,13 @@ pgconn_init(int argc, VALUE *argv, VALUE self)
 	VALUE error;
 
 	conninfo = rb_funcall2( rb_cPGconn, rb_intern("parse_connect_args"), argc, argv );
+
+	#ifdef HAVE_PG_DTRACE_PROBES
+	if(RUBY_PG_CONN_INIT_ENABLED()) {
+    RUBY_PG_CONN_INIT(conninfo);
+	}
+	#endif
+
 	conn = gvl_PQconnectdb(StringValuePtr(conninfo));
 
 	if(conn == NULL)

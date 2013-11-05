@@ -88,6 +88,15 @@ have_const 'PG_DIAG_TABLE_NAME', 'libpq-fe.h'
 $defs.push( "-DHAVE_ST_NOTIFY_EXTRA" ) if
 	have_struct_member 'struct pgNotify', 'extra', 'libpq-fe.h'
 
+if `which dtrace`
+  puts 'Compiling with dtrace..'
+  system `dtrace -o ../../../../ext/pg_probes.h -h -s ../../../../ext/pg_probes.d`
+  find_header('pg_probes.h') or abort 'Cant find dtrace pg probe header file'
+  $defs.push("-DHAVE_PG_DTRACE_PROBES")
+else
+  puts 'Compiling without dtrace..'
+end
+
 # unistd.h confilicts with ruby/win32.h when cross compiling for win32 and ruby 1.9.1
 have_header 'unistd.h'
 have_header 'ruby/st.h' or have_header 'st.h' or abort "pg currently requires the ruby/st.h header"
