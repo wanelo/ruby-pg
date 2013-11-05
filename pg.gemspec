@@ -15,6 +15,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  s.platform        = Gem::Platform::RUBY
-  s.extensions      = ['ext/extconf.rb']
+  spec.platform        = Gem::Platform::RUBY
+  spec.extensions      = ['ext/extconf.rb']
 end
