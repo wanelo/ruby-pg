@@ -1,46 +1,20 @@
-require 'rubygems'
-require 'date'
+# coding: utf-8
 
-SPEC = Gem::Specification.new do |s|
-  s.name              = 'pg'
-  s.rubyforge_project = 'ruby-pg'
-  s.version           = "17.1.0"
-  s.summary           = 'Ruby extension library providing an API to PostgreSQL'
-  s.authors           = [
-		'Yukihiro Matsumoto', 
-		'Eiji Matsumoto', 
-		'Noboru Saitou', 
-		'Dave Lee', 
-		'Jeff Davis']
-  s.email             = 'ruby-pg@j-davis.com'
-  s.homepage          = 'http://rubyforge.org/projects/ruby-pg'
-  s.requirements      = 'PostgreSQL libpq library and headers'
-  s.has_rdoc          = true
-  s.extra_rdoc_files = ['ext/pg.c']
+Gem::Specification.new do |spec|
+  spec.name          = "pg"
+  spec.version       = "17.1.0"
+  spec.authors       = ["TODO: Write your name"]
+  spec.email         = ["TODO: Write your email address"]
+  spec.description   = %q{TODO: Write a gem description}
+  spec.summary       = %q{TODO: Write a gem summary}
+  spec.homepage      = ""
+  spec.license       = "MIT"
 
-  if File.exists? 'pg.so' and PLATFORM =~ /mingw|mswin/
-    s.platform        = Gem::Platform::WIN32
-  else
-    s.platform        = Gem::Platform::RUBY
-    s.extensions      = ['ext/extconf.rb']
-  end
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
 
-  FILES = [
-	'COPYING',
-	'COPYING.txt',
-	'Contributors',
-	'GPL',
-	'LICENSE',
-	'README',
-	]
-
-  EXT_FILES = Dir['ext/*.[ch]']
-
-  s.files = FILES + EXT_FILES
-
-end
-
-if $0 == __FILE__
-  Gem::manage_gems
-  Gem::Builder.new(SPEC).build
+  s.platform        = Gem::Platform::RUBY
+  s.extensions      = ['ext/extconf.rb']
 end
